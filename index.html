@@ -56,7 +56,7 @@ function myfunction() {
             return false;
         }
 		
-    var newStr = document.getElementById("fname").value.toLowerCase() + "loves" + document.getElementById("lname").value.toLowerCase();
+        var newStr = document.getElementById("fname").value.toLowerCase() + "loves" + document.getElementById("lname").value.toLowerCase();
       
 		var str = "";
 		while(newStr.length != 0) {
@@ -88,8 +88,43 @@ function myfunction() {
 			str = sb;
 		}
 		
-		document.getElementById("demo").innerHTML = str + "%";
+		//Vice-versa
+		var newStr1 = document.getElementById("lname").value.toLowerCase() + "loves" + document.getElementById("fname").value.toLowerCase();
+      
+		var str1 = "";
+		while(newStr1.length != 0) {
+			var c = newStr1.charAt(0);
+			var index = newStr1.indexOf(c);
+			var counter = 0;
+			while (index >= 0) {
+				counter++;			
+			    index = newStr1.indexOf(c, index + 1);
+			}
+			newStr1 = newStr1.replace(new RegExp(c,'g'), "");
+			str1 = str1 + counter;
+		}
+       
+        while (str1.length != 2) {
+			var l = str1.length;
+			var j = l - 1;
+			var sb = "";
+            
+			for (var i = 0; i <= l / 2; i++) {
+				if (i < j) {
+					sb = sb + (parseInt(str1.charAt(i)) + parseInt(str1.charAt(j)));
+                    
+					j--;
+				} else if (i == j) {
+					sb = sb + parseInt(str1.charAt(i));
+				}
+			}
+			str1 = sb;
+		}
+		
+		
+		document.getElementById("demo").innerHTML = document.getElementById("fname").value + " Loves " + document.getElementById("lname").value + " = " + str + "%<br>" + document.getElementById("lname").value + " Loves " + document.getElementById("fname").value + " = " + str1 + "%" ;
 		var element = document.getElementById("demo");
+		
 		element.classList.add("mystyle");
 		
 		var x3 = document.getElementById("demo");
